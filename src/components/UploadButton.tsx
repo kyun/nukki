@@ -8,10 +8,11 @@ const Base = styled.label`
   align-items: center;
   justify-content: center;
   background: #5113ff;
-  padding: 12px 24px;
-  border-radius: 6px;
+  padding: 8px 24px;
+  border-radius: 3px;
   border: none;
-  font-size: 20px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
   &:hover {
     background: #3f0ebe;

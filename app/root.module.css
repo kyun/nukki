@@ -1,15 +1,4 @@
 .main {
-  background: #222;
+  background: #111;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.description {
-  color: #fff;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 8px;
 }

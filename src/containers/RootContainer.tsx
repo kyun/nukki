@@ -1,51 +1,69 @@
 "use client";
 import React from "react";
-import NextImage from "next/image";
-import UploadButton from "../components/UploadButton";
 
-interface UploadFile {
-  url: string;
-  size: number;
-  name: string;
-  type: string;
-}
+import { styled } from "styled-components";
+import TaskList from "../components/TaskList";
+
+const Base = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const Paper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 832px;
+  height: 532px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  gap: 16px;
+`;
+
+const MockCanvas = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 532px;
+  height: 100%;
+  background: #1d1d1d;
+  border-radius: 6px;
+`;
+const Canvas = styled.div`
+  width: 512px;
+  height: 512px;
+  background: #eee
+    url('data:image/svg+xml,\
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill-opacity=".16" >\
+            <rect x="16" width="16" height="16" />\
+            <rect y="16" width="16" height="16" />\
+        </svg>');
+
+  background-size: 16px 16px;
+`;
+const ListWrapper = styled.div`
+  flex: 1;
+  height: 100%;
+  background: #1d1d1d;
+  border-radius: 6px;
+  overflow: hidden;
+`;
+
 const RootContainer = () => {
-  const [urls, setUrls] = React.useState<string[]>([]);
-  const [uploadFiles, setUploadFiles] = React.useState<UploadFile[]>([]);
-  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files);
-    if (!e.target.files || e.target.files.length < 1) return;
-    const file = e.target.files[0];
-    console.log(file);
-    // file to blob
-    const blob = new Blob([file], { type: file.type });
-    // blob to url
-    const url = URL.createObjectURL(blob);
-    console.log(url);
-    setUrls((prev) => [...prev, url]);
-    setUploadFiles((prev) => [
-      ...prev,
-      {
-        url,
-        size: file.size,
-        name: file.name,
-        type: file.type,
-      },
-    ]);
-  };
   return (
-    <>
-      <UploadButton onUpload={handleUpload} />
-      {uploadFiles.map((file, index) => (
-        <div key={index}>
-          <NextImage src={file.url} width={300} height={300} alt="123" />
-          <div>
-            <p>{file.name}</p>
-            <p>{file.size / 1024}Kb</p>
-          </div>
-        </div>
-      ))}
-    </>
+    <Base>
+      <Paper>
+        <MockCanvas>
+          <Canvas></Canvas>
+        </MockCanvas>
+        <ListWrapper>
+          <TaskList />
+        </ListWrapper>
+      </Paper>
+    </Base>
   );
 };
 
